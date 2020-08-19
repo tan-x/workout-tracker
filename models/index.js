@@ -9,6 +9,7 @@ const workoutSchema = new Schema({
         type: {type: String, required: true},
         name: {type: String, required: true},
         duration: {type: Number},
+        distance: {type: Number},
         weight: {type: Number},
         reps: {type: Number, max: 200},
         sets: {type: Number, max: 20}

@@ -13,13 +13,14 @@ router.get('/api/workouts', (req, res) => {
 });
 
 // add exercises to a already existing workout
-router.put('/api/workouts/:id', (req, res) => {
-  Workout.findOne({ _id: req.params.id }).then((dbWorkout) => {
-    dbWorkout.exercises.push(req.body);
-    console.log(dbWorkout.exercises);
-    Workout.findOneAndUpdate({ _id: req.params.id }, dbWorkout, {
-      new: true,
-    }).then((data) => res.json(data));
+router.put('/api/workouts/:id', ({ body, params }, res) => {
+  Workout.findOneAndUpdate(
+    { _id: params.id },
+    { $push: { exercises: body } },
+    { new: true }
+  ).then((dbWorkout) => {
+    console.log(dbWorkout);
+    res.json(dbWorkout);
   });
 });
 
