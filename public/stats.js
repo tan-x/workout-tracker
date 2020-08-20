@@ -220,9 +220,9 @@ function workoutNames(data) {
 
   data.forEach(workout => {
     workout.exercises.forEach(exercise => {
-      if (!workouts.some(w => w === exercise.name)) {
+      // if (!workouts.some(w => w === exercise.name)) {
         workouts.push(exercise.name);
-      }
+      // }
     });
   });
   
