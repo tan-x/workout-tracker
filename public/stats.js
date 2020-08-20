@@ -190,9 +190,11 @@ function duration(data) {
   let durations = [];
 
   data.forEach(workout => {
+    let duration = 0;
     workout.exercises.forEach(exercise => {
-      durations.push(exercise.duration);
+      duration += exercise.duration;
     });
+    durations.push(duration);
   });
 
   return durations;
@@ -202,9 +204,11 @@ function calculateTotalWeight(data) {
   let total = [];
 
   data.forEach(workout => {
+    let weight = 0;
     workout.exercises.forEach(exercise => {
-      total.push(exercise.weight);
+      weight += exercise.weight;
     });
+    total.push(weight);
   });
 
   return total;

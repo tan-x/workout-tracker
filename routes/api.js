@@ -3,7 +3,7 @@ const Workout = require('../models/');
 
 router.get('/api/workouts', (req, res) => {
   Workout.find({})
-    .sort({ date: -1 })
+    .sort({ day: 1 })
     .then((dbWorkout) => {
       res.json(dbWorkout);
     })
@@ -24,6 +24,7 @@ router.put('/api/workouts/:id', ({ body, params }, res) => {
   });
 });
 
+// create a workout
 router.post('/api/workouts', ({ body }, res) => {
   Workout.create(body)
     .then((dbWorkout) => {
@@ -34,8 +35,10 @@ router.post('/api/workouts', ({ body }, res) => {
     });
 });
 
-router.post('/api/workouts/bulk', ({ body }, res) => {
-  Workout.insertMany(body)
+router.get('/api/workouts/range', (req, res) => {
+  Workout.find({})
+    .sort('-day')
+    .limit(7)
     .then((dbWorkout) => {
       res.json(dbWorkout);
     })
